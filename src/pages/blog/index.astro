@@ -16,9 +16,7 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			main {
-				width: 960px;
-			}
+			
 			ul {
 				display: flex;
 				flex-wrap: wrap;
@@ -61,10 +59,7 @@ const posts = (await getCollection('blog')).sort(
 				margin: 0;
 				color: rgb(var(--gray));
 			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
+			
 			ul a:hover img {
 				box-shadow: var(--box-shadow);
 			}
@@ -87,7 +82,7 @@ const posts = (await getCollection('blog')).sort(
 	</head>
 	<body class="dark:bg-gray-800">
 		<Header />
-		<main>
+		<main class="max-w-[1300px] mt-10 mx-auto max-sm:w-[90%]">
 			<section>
 				<ul>
 					{
@@ -95,7 +90,7 @@ const posts = (await getCollection('blog')).sort(
 							<li>
 								<a href={`/blog/${post.slug}/`}>
 									<img width={720} height={360} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
+									<h4 class="post-card-title">{post.data.title}</h4>
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
