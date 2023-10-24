@@ -1,8 +1,8 @@
 ---
 title: 'How to structure your front-end code in React'
 description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Oct 16 2023'
-heroImage: '/blog-placeholder-3.jpg'
+pubDate: 'Oct 21 2023'
+heroImage: '/react-1.jpg'
 ---
 ```js
 📁src

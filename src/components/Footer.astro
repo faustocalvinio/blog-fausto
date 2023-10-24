@@ -3,9 +3,14 @@ const today = new Date();
 ---
 
 <footer class="dark:bg-black flex flex-row justify-between py-4 border-t border-t-gray-700 dark:border-t-gray-600 mt-4">
-		<div class="mx-auto max-w-[1300px] flex flex-row justify-between max-sm:w-[90%]">
-			<p class="dark:text-white">&copy; {new Date().toLocaleDateString()} Fausto Calviño. Made with <a href="https://astro.build/" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" target="_blank">Astro Blog template</a>.</p>
-			<a href="https://github.com/faustocalvinio" target="_blank" class="dark:text-white">
+		<div class="mx-auto max-w-[1300px] flex flex-row justify-around items-center max-sm:min-w-[95%
+		] ">
+		
+			<p class="dark:text-white">&copy; {new Date().toLocaleDateString()} Fausto Calviño.<br class="sm:block md:hidden"> Made with <a href="https://astro.build/themes/details/blog/" class="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline" target="_blank">Astro Blog template</a>.</p>
+
+		
+	
+			<a href="https://github.com/faustocalvinio" target="_blank" class="dark:text-white ml-6">
 				<span class="sr-only">Go to my personal GitHub profile</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github"
 					><path
@@ -14,15 +19,6 @@ const today = new Date();
 					></path></svg
 				>
 			</a>
-		</div>
-		
-		
-		
-		
-		
-			
-		
-		
 		
 	
 </footer>
