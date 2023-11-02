@@ -1,45 +1,51 @@
 ---
-title: 'Differences Front-end and Back-end'
+title: 'Front-end vs Back-end comparisson'
 description: 'Primer Post de Prueba'
 pubDate: 'Oct 24 2023'
 heroImage: '/frontvsback-1.png'
 ---
-KEY DIFFERENCES BETWEEN FRONTEND AND BACKEND DEVELOPMENT
+## Front-end
 
-Front-end Development:
+🌟 Focus : UI.
 
-🌟 Focuses on the user interface (UI).
+💻 Runs on the client-side (user browser).
 
-💻 Runs on the client-side (in the user's browser).
+🎨 HTML, CSS, and JavaScript.
 
-🎨 Involves HTML, CSS, and JavaScript.
+🖌️ Responsibilities : design, layout, interactivity.
 
-🖌️ Responsibilities include design, layout, and interactivity.
+🛠️ Frameworks : React, Angular, or Vue.js.
 
-🛠️ Utilizes frameworks like React, Angular, or Vue.js for streamlined development.
+## Back-end
 
-Back-end Development:
+🏢 Server-side logic.
 
-🏢 Manages server-side logic.
-
-🖥️ Operates on the server, handling data and processing requests.
+🖥️ Runs on the server, handling data and processing requests.
 
 💾 Uses various programming languages and technologies (e.g., Python, Java, Node.js).
 
-🔐 Responsibilities include data storage, security, and business logic.
+🔐 Responsibilities : data storage, security, and business logic.
 
 📦 Works with databases and server technologies.
 
-Key Differences:
+## Key Differences
 
-🧩 Front-end deals with UI and runs in the browser; back-end handles server-side operations.
+<mark>Responsibilities</mark>
 
-🧰 Front-end uses HTML, CSS, and JavaScript, while back-end uses various programming languages.
+Front deals with UI and runs in the browser; back handles server-side operations.
 
-🎨 Front-end focuses on design and user experience, while back-end manages data and application logic.
+<mark>Tech Stack</mark>
 
-🔄 Front-end and back-end communicate through APIs.
+Front uses HTML, CSS, and JavaScript, while back uses various programming languages.
 
-Front-end development makes the user interface appealing and interactive
+<mark>Focus</mark>
 
-While back-end development manages data and functionality behind the scenes
+Front focuses on design and user experience, while back manages data and application logic.
+
+<mark>Communication</mark>
+
+Front and back communicate through APIs.
+
+<mark>Objective</mark>
+
+Front makes the user interface appealing and interactive, back manages data and functionality behind the scenes
