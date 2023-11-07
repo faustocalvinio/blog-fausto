@@ -10,7 +10,7 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf() 
 );
 posts.forEach(post=>console.log(post.data.pubDate.valueOf()))
-console.log(posts);
+// console.log(posts);
 
 ---
 

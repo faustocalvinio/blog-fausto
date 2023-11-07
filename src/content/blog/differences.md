@@ -49,3 +49,4 @@ Front and back communicate through APIs.
 <mark>Objective</mark>
 
 Front makes the user interface appealing and interactive, back manages data and functionality behind the scenes
+
