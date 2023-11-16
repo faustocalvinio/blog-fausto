@@ -15,7 +15,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 ---
 
 <!-- darkmode -->
-<script>
+<script defer>
 	if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 		document.documentElement.classList.add('dark');
 	} else {
