@@ -13,8 +13,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={`${title} - Fausto Calviño`} description={description} />
-		<style>
-			
+		<style>	
+
 			.hero-image {
 				width: 100%;
 			}
@@ -41,6 +41,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.last-updated-on {
 				font-style: italic;
 			}
+			
 		</style>
 		
 	</head>
@@ -74,3 +75,51 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Footer />
 	</body>
 </html>
+<script>
+	const preItems=document.querySelectorAll('pre');
+
+	const toCopySvg=`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard" width="35" height="35" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+		<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+		<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+		<path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+	</svg>`;
+
+	const copiedSvg=`<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-check" width="35" height="35" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+		<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+		<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+		<path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+		<path d="M9 14l2 2l4 -4" />
+	</svg>`;
+
+	preItems.forEach(item=>{
+		item.classList.add('relative');
+		item.classList.add('p-6');
+		item.classList.add('bg-[#332449]');
+		
+
+		item.style.backgroundColor='';
+
+		const buttonCopy=document.createElement('button');
+		const codeToCopy=item.querySelector('code')?.innerText || 'no code';
+
+		buttonCopy.innerHTML=toCopySvg;
+		
+
+		buttonCopy.classList.add('absolute');
+		buttonCopy.classList.add('w-[35px]');
+		buttonCopy.classList.add('h-[35px]');
+		buttonCopy.classList.add('bg-[#231832]');
+		buttonCopy.classList.add('right-[1.5rem]');
+		buttonCopy.classList.add('top-[1.5rem]');
+
+		buttonCopy.addEventListener('click',()=>{
+			navigator.clipboard.writeText(codeToCopy)
+			buttonCopy.innerHTML=copiedSvg
+			setTimeout(() => {
+				buttonCopy.innerHTML=toCopySvg
+			}, 2000);
+
+		})
+		item.appendChild(buttonCopy)
+	})
+</script>
