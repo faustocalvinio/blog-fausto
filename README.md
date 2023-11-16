@@ -1,5 +1,12 @@
 # Astro Starter Kit: Blog
 
+#### To-Do
+- Colours Config in tailwind file
+- Width config  in tailwind file
+-
+-
+
+
 ```sh
 npm create astro@latest -- --template blog
 ```
