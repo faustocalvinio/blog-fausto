@@ -1,9 +1,8 @@
 ---
 title: Markdown Examples
-date: 2021/3/19
-description: View examples of all possible Markdown options.
-tag: web development
-author: You
+description: 'Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.'
+pubDate: 'Oct 22 2023'
+heroImage: '/blog-placeholder-2.jpg'
 ---
 
 # Markdown Examples

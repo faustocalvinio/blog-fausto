@@ -1,9 +1,8 @@
 ---
 title: Next.js Pages
-date: 2021/3/18
-description: Learn more about Next.js pages.
-tag: web development
-author: You
+pubDate: 'Oct 20 2023'
+description: 'Learn more about Next.js pages.'
+heroImage: '/blog-placeholder-2.jpg'
 ---
 
 # Next.js Pages
