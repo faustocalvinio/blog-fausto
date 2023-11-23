@@ -1,11 +1,4 @@
----
-/*
-  This is not a layout but just a component that's used in layouts.
-*/
----
-
-<script is:inline>
-  // figure out user's preferred theme and set it as html class for tailwind before paint
+<script is:inline> 
   (function () {
     if (typeof window !== "undefined") {
       const isSystemColorSchemeDark = window.matchMedia(
@@ -18,8 +11,7 @@
       } else if (storageTheme === "dark") {
         document.documentElement.classList.add("dark");
         document.head.children.namedItem("theme-color").content = "#0e141b";
-      } else {
-        // we already server render light theme
+      } else {        
         document.head.children.namedItem("theme-color").content = "#ffffff";
       }
     }

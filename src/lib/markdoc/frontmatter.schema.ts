@@ -12,17 +12,13 @@ const baseSchema = z.object({
     invalid_type_error:
       "date must be written in yyyy-mm-dd format without quotes: For example, Jan 22, 2000 should be written as 2000-01-22.",
   }),  
-  readingMinutes: z.string().default('r')
+  readingMinutes: z.string().default('undefined')
 });
 
 /*
-  Blog posts could be of two types —
+  Blog posts two types —
   1. The posts you write in markdown files in content/blog/*.md
   2. External posts in other websites
-
-  That's why the frontmatter schema for blog posts is one of the two possible types.
-  If you don't want to link posts written in external websites, you could
-  simplify this to just use the markdown schema.
 */
 export const blog = z.discriminatedUnion("external", [
   // markdown
