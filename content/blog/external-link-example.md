@@ -1,7 +1,7 @@
 ---
 external: true
-url: https://medium.com/the-thinkmill/progressive-rendering-the-key-to-faster-web-ebfbbece41a4
-title: You can also link to an external blog post
+url: https://midu.dev/buenas-practicas-escribir-commits-git/
+title: Best practices for writing Git commits
 description: Safely access nested objects in JavaScript in a super cool way.
-date: 2019-11-11
+date: 2021-07-22
 ---

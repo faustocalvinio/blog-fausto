@@ -18,18 +18,18 @@
         /* Tailwind gray-500 #6b7280 */
         --color-text-muted: 107 114 128;
         /* Tailwind orange-500 #f97316 */
-        --color-text-link: 249 115 22;
+        --color-text-link: 48 115 241;
         /* black */
         --color-text-code: 0 0 0;
         /* black */
-        --color-text-selection: 0 0 0;
+        --color-text-selection: 255 255 255;
 
         /* white */
         --color-bg-body: 255 255 255;
         /* Tailwind orange-50 #fff7ed */
-        --color-bg-code: 255 247 237;
+        --color-bg-code: 195 238 252;
         /* Tailwind amber-200 #fde68a */
-        --color-bg-selection: 253 230 138;
+        --color-bg-selection: 48 115 241;
 
         /* Tailwind orange-100 #ffedd5 */
         --color-border-code: 255 237 213;
@@ -50,7 +50,7 @@
         /* Tailwind stone-400 #a8a29e */
         --color-text-muted: 168 162 158;
         /* Tailwind yellow-400 #facc15 */
-        --color-text-link: 250 204 21;
+        --color-text-link: 79 210 249;
         /* black */
         --color-text-code: 255 255 255;
         /* black */
@@ -59,9 +59,9 @@
         /* #0e141b */
         --color-bg-body: 14 20 27;
         /* Tailwind yellow-500 #eab308 */
-        --color-bg-code: 234 179 8;
+        --color-bg-code: 204 204 204;
         /* Tailwind yellow-300 #fde047 */
-        --color-bg-selection: 253 224 71;
+        --color-bg-selection: 79 210 249;
 
         /* Tailwind yellow-100 #fef9c3 */
         --color-border-code: 254 243 199;
@@ -193,6 +193,7 @@
         transform-origin: left center;
         transition: all .150s ease-in-out;
         background-image: linear-gradient(to right, theme('colors.text.link'), theme('colors.text.link'));
+        /* background-image:linear-gradient(to right, rgb(59, 130, 246), rgb(37, 99, 235)) */
     }
 
     .animated-link.show:after {

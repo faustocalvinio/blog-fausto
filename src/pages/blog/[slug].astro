@@ -4,7 +4,7 @@ import { blog } from "../../lib/markdoc/frontmatter.schema";
 import Renderer from "../../components/Renderer.astro";
 import BlogPostMeta from "../../components/BlogPostMeta.astro";
 import ContentLayout from "../../layouts/ContentLayout.astro";
-import { SITE_URL } from "../../config";
+import { SITE_URL, SITE_TITLE } from "../../config";
 
 export async function getStaticPaths() {
   const posts = await readAll({
@@ -41,7 +41,7 @@ const ogImageAbsoluteUrl =
 
 <ContentLayout title={frontmatter.title} date={frontmatter.date}>
   <BlogPostMeta
-    title={frontmatter.title}
+    title={`${frontmatter.title} | ${SITE_TITLE}`}
     description={frontmatter.external ? undefined : frontmatter.description}
     publishDate={frontmatter.date.toISOString()}
     pagePath={`/blog/${slug}`}

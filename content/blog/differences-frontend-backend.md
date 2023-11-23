@@ -29,25 +29,25 @@ date: 2023-11-05
 
 📦 Works with databases and server technologies.
 
-## Key Differences
+## Key Differences 
 
-<mark>Responsibilities</mark>
+#### Responsibilities
 
-Front deals with UI and runs in the browser; back handles server-side operations.
+Front deals with {% mark %}UI{% /mark %} and runs in the {% mark %}browser{% /mark %}; back handles {% mark %}server-side{% /mark %} operations.
 
-<mark>Tech Stack</mark>
+#### Tech Stack
 
 Front uses HTML, CSS, and JavaScript, while back uses various programming languages.
 
-<mark>Focus</mark>
+#### Focus
 
-Front focuses on design and user experience, while back manages data and application logic.
+Front focuses on {% mark %}design and user experience{% /mark %}, while back manages {% mark %}data and application logic{% /mark %}.
 
-<mark>Communication</mark>
+#### Communication
 
-Front and back communicate through APIs.
+Front and back communicate through {% mark %}APIs{% /mark %}.
 
-<mark>Objective</mark>
+#### Objective
 
-Front makes the user interface appealing and interactive, back manages data and functionality behind the scenes
+Front makes the {% mark %}user interface appealing{% /mark %} and interactive, back manages {% mark %}data and functionality{% /mark %} behind the scenes
 

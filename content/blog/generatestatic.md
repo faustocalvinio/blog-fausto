@@ -6,8 +6,10 @@ description: It's a beautiful world out there.
 date: 2023-11-05
 ---
 
-What is generateStaticParams in Next.js?
-In Next.js, the generateStaticParams function is used to specify the dynamic routes that should be pre-rendered at build time.
+[Official docs](https://nextjs.org/docs/app/api-reference/functions/generate-static-params)
+
+## What is generateStaticParams in Next.js?
+a function that is used to specify the dynamic routes that should be pre-rendered at build time.
 
 To explain it in simpler terms, let's imagine you have a website with multiple blog posts, and each blog post has a unique URL. With generateStaticParams, you can tell Next.js which blog post URLs should be generated and pre-rendered during the build process.
 

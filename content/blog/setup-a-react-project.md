@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: Set up a react project
+title: How to set up a React project?
 description: It's a beautiful world out there.
 date: 2023-11-05
 ---

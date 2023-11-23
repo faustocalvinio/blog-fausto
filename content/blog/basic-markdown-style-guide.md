@@ -1,6 +1,6 @@
 ---
 external: false
-title: "Basic msarkdown style guide"
+title: "Basic markdown style guide"
 description: "You can author content using the familiar markdown syntax you already know. All basic markdown syntax is supported."
 date: 2022-11-02
 ---
@@ -64,7 +64,7 @@ Paragraphs can be multiline too when they constitute words that make up more tha
 - And another item
 
 ### Nested list
-
+              
 - Fruit
   - Apple
   - Orange

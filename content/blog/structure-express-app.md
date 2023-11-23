@@ -1,11 +1,11 @@
 ---
 external: false
 draft: false
-title: structure express app
+title: How would I structure an Express.js App? 
 description: It's a beautiful world out there.
-date: 2023-11-05
+date: 2023-11-20
 ---
-```js
+```jsx
 📁
   ├── 📄 app.js
   ├── 📁 bin
@@ -46,27 +46,27 @@ date: 2023-11-05
   │   └── ...
   └── 📁 node_modules
 ```
-<br>
-<mark>app.js</mark> : It's like the control center of your web application. It's where you set up and manage everything.
 
-<mark>bin</mark> : Think of this as a place for starting your web server. It's where you have scripts that make your website work.
+**app.js :** It's like the control center of your web application. It's where you set up and manage everything.
 
-<mark>config</mark> : These are like settings for your website, such as where your database is or how your website should behave.
+**bin :** Think of this as a place for starting your web server. It's where you have scripts that make your website work.
 
-<mark>controllers</mark> : This is where you put the brains of your website explains the name controllers. Each file here handles a different part of your site, like customer stuff or product stuff.
+**config :** These are like settings for your website, such as where your database is or how your website should behave.
 
-<mark>middleware</mark> : Imagine these as helpers that help your website do things like checking if you're logged in or keeping a record of what people do on your site.
+**controllers :** This is where you put the brains of your website explains the name controllers. Each file here handles a different part of your site, like customer stuff or product stuff.
 
-<mark>models</mark> : This is where you describe what your data looks like. If your website is a store, this is where you say what a product is or what a customer is.
+**middleware :** Imagine these as helpers that help your website do things like checking if you're logged in or keeping a record of what people do on your site.
 
-<mark>routes</mark> : These are like the paths to different parts of the website. If the website is a city, these are the streets and highways.
+**models :** This is where you describe what your data looks like. If your website is a store, this is where you say what a product is or what a customer is.
 
-<mark>public</mark> : Think of this as your storage room for things everyone can see, like images, styles, and scripts.
+**routes :** These are like the paths to different parts of the website. If the website is a city, these are the streets and highways.
 
-<mark>views</mark> : If your website is like a book, these are the pages. This is where you put together what people see on the screen.
+**public :** Think of this as your storage room for things everyone can see, like images, styles, and scripts.
 
-<mark>tests</mark> : These are like exams for your website to make sure it works correctly. You create different kinds of tests to check different parts of your site.
+**views :** If your website is like a book, these are the pages. This is where you put together what people see on the screen.
 
-<mark>utils</mark> : These are like handy tools you use to make your website better, like checking if someone's email is valid or formatting dates nicely.
+**tests :** These are like exams for your website to make sure it works correctly. You create different kinds of tests to check different parts of your site.
 
-<mark>node_modules</mark> : This is like your toolbox filled with tools (libraries and code) that you use to build your website. It's automatically filled with things your project needs.
+**utils :** These are like handy tools you use to make your website better, like checking if someone's email is valid or formatting dates nicely.
+
+**node_modules :** This is like your toolbox filled with tools (libraries and code) that you use to build your website. It's automatically filled with things your project needs.
