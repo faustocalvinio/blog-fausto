@@ -27,12 +27,12 @@
         /* white */
         --color-bg-body: 255 255 255;
         /* Tailwind orange-50 #fff7ed */
-        --color-bg-code: 195 238 252;
+        --color-bg-code: 232 239 253;
         /* Tailwind amber-200 #fde68a */
         --color-bg-selection: 48 115 241;
 
         /* Tailwind orange-100 #ffedd5 */
-        --color-border-code: 255 237 213;
+        --color-border-code: 48 115 241;
 
     }
 
@@ -64,7 +64,7 @@
         --color-bg-selection: 79 210 249;
 
         /* Tailwind yellow-100 #fef9c3 */
-        --color-border-code: 254 243 199;
+        --color-border-code: 196 196 196;
     }
 
     :root {

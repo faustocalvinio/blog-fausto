@@ -4,6 +4,7 @@ draft: false
 title: generateStaticParams in Next.js
 description: It's a beautiful world out there.
 date: 2023-11-05
+readingMinutes: '22321'
 ---
 
 [Official docs](https://nextjs.org/docs/app/api-reference/functions/generate-static-params)

@@ -4,6 +4,7 @@ draft: false
 title: How would I structure a React app?
 description: It's a beautiful world out there.
 date: 2023-09-05
+readingMinutes: '2211111'
 ---
 ```jsx
 📁src
