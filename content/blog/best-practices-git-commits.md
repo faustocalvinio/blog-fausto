@@ -1,7 +1,7 @@
 ---
 external: true
 url: https://midu.dev/buenas-practicas-escribir-commits-git/
-title: Best practices for writing Git commits
+title: Best practices for writing Git commits by midu.dev
 description: Safely access nested objects in JavaScript in a super cool way.
 date: 2021-07-22
 ---

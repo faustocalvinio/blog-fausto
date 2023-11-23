@@ -4,7 +4,7 @@ draft: false
 title: How would I structure an Express.js App? 
 description: It's a beautiful world out there.
 date: 2023-11-20
-readingMinutes: '22333333'
+readingMinutes: '5'
 ---
 ```jsx
 📁

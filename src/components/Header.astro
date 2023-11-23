@@ -16,11 +16,12 @@ import DarkModeToggle from "./DarkModeToggle.astro";
         <li><HeaderLink href="/">Home</HeaderLink></li>
         <li><HeaderLink href="/blog">Blog</HeaderLink></li>
         <li><HeaderLink href="/projects">Projects</HeaderLink></li>
+       
       </ul>
     </section>
   </nav>
   <div
-    class="max-[375px]:hidden justify-self-end py-2 flex items-center content-center text-text-bold"
+    class="max-[345px]:hidden justify-self-end py-2 flex items-center content-center text-text-bold"
   >
     <a
       class="unset text-xl ml-4 hover:text-text-link"
@@ -32,17 +33,7 @@ import DarkModeToggle from "./DarkModeToggle.astro";
         aria-hidden="true"
         title="Personal Github"></i>
       <span class="fa-sr-only">Personal Github</span>
-    </a>
-    <!-- <a
-      class="unset text-xl ml-4 hover:text-text-link"
-      href="https://twitter.com/flexdinesh"
-    >
-      <i
-        class="fa-brands fa-twitter"
-        aria-hidden="true"
-        title="Dinesh on Twitter"></i>
-      <span class="fa-sr-only">Dinesh on Twitter</span>
-    </a> -->
+    </a>    
   </div>
   <DarkModeToggle />
 </header>

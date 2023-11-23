@@ -4,7 +4,7 @@ draft: false
 title: Front-end vs Back-end
 description: It's a beautiful world out there.
 date: 2023-11-05
-readingMinutes: '22'
+readingMinutes: '3'
 ---
 ## Front-end
 
