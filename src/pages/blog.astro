@@ -9,7 +9,6 @@ const posts = await readAll({
   directory: "blog",
   frontmatterSchema: blog,
 });
-console.log(posts);
 
 const sortedPosts = posts
   .filter((p) => p.frontmatter.draft !== true)
