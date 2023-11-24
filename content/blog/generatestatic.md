@@ -1,6 +1,5 @@
 ---
 external: false
-draft: false
 title: generateStaticParams in Next.js
 description: It's a beautiful world out there.
 date: 2023-11-05
