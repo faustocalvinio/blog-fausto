@@ -1,4 +1,9 @@
 ---
+var fechaHora = new Date();
+fechaHora.toLocaleTimeString('es-ES', { timeZone: 'Europe/Madrid' });
+var horas = ('0' + fechaHora.getHours()).slice(-2); // Asegura dos dígitos
+var minutos = ('0' + fechaHora.getMinutes()).slice(-2); // Asegura dos dígitos
+var horaMadrid = horas + ':' + minutos;
 ---
 
 <section class="mb-8">
@@ -12,16 +17,37 @@
         Fausto Calviño
       </span>
     </h1>
-    <p class="text-2xl pb-4 max-sm:text-center">Frontend Web Developer.</p>
+    <p class="text-2xl py-2 max-sm:text-center flex flex-row justify-between">Frontend Web Developer. <code style="font-size:16px" class=" px-2 text-sm" id="my-time">📍 Madrid, Spain 		 ⌚{horaMadrid}</code></p>
   </div>
   <div>
     <p class="mb-5 max-sm:text-center">
-      Hello! This is a starter template to build your own blog with 
+      In this blog, I will be sharing things related to web development as I learn them, with the goal of solidifying my knowledge. In the future, I may also give my personal opinion on certain technologies or methodologies.
+    </p>
+    <p class="mb-5 max-sm:text-center">
+      This is blog is built with
       <a href={"https://github.com/flexdinesh/blogster"} target="_blank">Blogster</a>. 
-      Available in four themes       
+      I've also made some configurations on my own, such as a "minutes of reading" feature, changed the colour styles.   
+    </p>
+    <p class="mb-5 max-sm:text-center">
+      If you want to know more about me you can check my <a href={"https://faustocalvinio.netlify.app/"} target="_blank">portfolio</a> or my <a href={"https://www.linkedin.com/in/faustocalvinio"} target="_blank">LinkedIn</a>.  
     </p>
     <p class="text-center whitespace-nowrap overflow-auto">
-      <code class="py-1 px-2">hello world!</code>
+      
     </p>
+    <h4>To-Do List:</h4>
+    <ul>    
+      <li>Add: Projects list</li>
+      <li>Feat: Search Feature</li>
+      <li>Change: Favicon</li>
+      <li>Fix: Homepage Time Container</li>
+      <li>Change: Font family?</li>
+    </ul>
   </div>
 </section>
+
+<script >
+  
+
+
+
+</script>
