@@ -191,9 +191,9 @@ Run `npm run dev`
 
 Open [http://localhost:5173/](http://localhost:5173/) and you should see the App running
 
-![App](/public/images/react-app-from-0-1.png)
+![App](/images/react-app-from-0-1.png)
 
-![App](/public/images/react-app-from-0-2.png)
+![App](/images/react-app-from-0-2.png)
 
 Directory structure must see like this
 
