@@ -1,9 +1,5 @@
 ---
-var fechaHora = new Date();
-fechaHora.toLocaleTimeString('es-ES', { timeZone: 'Europe/Madrid' });
-var horas = ('0' + fechaHora.getHours()).slice(-2); // Asegura dos dígitos
-var minutos = ('0' + fechaHora.getMinutes()).slice(-2); // Asegura dos dígitos
-var horaMadrid = horas + ':' + minutos;
+
 ---
 
 <section class="mb-8">
@@ -17,7 +13,10 @@ var horaMadrid = horas + ':' + minutos;
         Fausto Calviño
       </span>
     </h1>
-    <p class="text-2xl py-2 max-sm:text-center flex flex-row justify-between">Frontend Web Developer. <code style="font-size:16px" class=" px-2 text-sm" id="my-time">📍 Madrid, Spain 		 ⌚{horaMadrid}</code></p>
+    <div class="flex items-center justify-between max-sm:justify-center max-sm:flex-col max-sm:gap-2 ">
+      <p class="text-2xl py-2 max-sm:text-center flex flex-row justify-between">Frontend Web Developer. </p>
+      <code id="hora-code" style="font-size:16px" class="mb-0 px-2 text-sm" id="my-time">📍 Madrid, Spain 		 ⌚<span id="hora-span">00:00</span></code>
+    </div>
   </div>
   <div>
     <p class="mb-5 max-sm:text-center">
@@ -47,8 +46,15 @@ var horaMadrid = horas + ':' + minutos;
 </section>
 
 <script >
+  var fechaHora = new Date();
+  fechaHora.toLocaleTimeString('es-ES', { timeZone: 'Europe/Madrid' });
+  var horas = ('0' + fechaHora.getHours()).slice(-2);
+  var minutos = ('0' + fechaHora.getMinutes()).slice(-2); 
+  var horaMadrid = horas + ':' + minutos;
+  const horaElement=document.getElementById('hora-span');
   
-
-
+  window.addEventListener('load',()=>{
+    horaElement!.innerHTML=horaMadrid
+  });
 
 </script>

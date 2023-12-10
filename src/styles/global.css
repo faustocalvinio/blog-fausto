@@ -127,7 +127,9 @@
         border: 1px solid theme('colors.border.code');
         margin-bottom: 1.25em;
     }
-
+    #hora-code{
+        margin-bottom: 0px;
+    }
     html.dark code:not(pre code) {
         background-color: rgb(var(--color-bg-code) / 0.15);
         border-color: rgb(var(--color-border-code) / 0.15);

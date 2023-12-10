@@ -4,7 +4,7 @@ draft: false
 title: React project with Vite
 description: It's a beautiful world out there.
 date: 2023-11-05
-readingMinutes: '5'
+readingMinutes: '10'
 ---
 
 ### What is vite?
