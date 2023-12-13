@@ -13,6 +13,7 @@ import ThemeScript from "./ThemeScript.astro";
 import Favicon from "./Favicon.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import ScrollToTop from "src/components/ScrollToTop.astro";
 
 export interface Props {
   title: string;
@@ -47,14 +48,20 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
   >
     <Header />
     <main id="main">
+      <div class="bg-[#3073F1] dark:bg-[#4FD2F9] progress-scroll "></div>
       <section class="blog-post prose max-w-none prose-sleek">
         <h1 class="m-0 mb-[0.25em]">{title}</h1>
         <div class="flex items-center font-semibold gap-2 mb-4"><time class="block text-text-muted">{formattedDate}</time>-<cite class="text-xs m-0">{readingMinutes} minutes of reading.</cite></div>
         <slot name="content" />
       </section>
     </main>
+    <ScrollToTop />
     <Footer />
     <style>
+      :root::-webkit-scrollbar{
+        display: none;
+      }
+
       body {
         display: grid;
         grid-template-areas:
@@ -63,10 +70,33 @@ const formattedDate = new Date(date).toLocaleDateString("en-us", {
           "footer";
         grid-template-rows: 5rem minmax(0, 1fr) 5rem;
         grid-template-columns: minmax(0, 1fr);
+        scroll-behavior: smooth;
       }
       main {
         grid-area: main;
       }
+      .progress-scroll{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        transform-origin: 0 50%;
+        animation: scaleProgress auto linear;
+        animation-timeline: scroll(root);
+      }
+
+
+      @keyframes scaleProgress {
+        0% {
+          transform: scaleX(0);
+        }
+        100% {
+          transform: scaleX(1);
+        }
+      }
+
     </style>
   </body>
 </html>
+
