@@ -1,6 +1,5 @@
 ---
 external: false
-url: 
 title: SQL Data types
 description: SQL Data types
 date: 2023-11-24
