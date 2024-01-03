@@ -1,6 +1,6 @@
 ---
 external: false
-title: generateStaticParams in Next.js
+title: Generate Static Params in Next.js
 description: It's a beautiful world out there.
 date: 2023-11-05
 readingMinutes: '7'
