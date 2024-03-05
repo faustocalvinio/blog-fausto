@@ -16,89 +16,112 @@ import Footer from "../components/Footer.astro";
 import ScrollToTop from "src/components/ScrollToTop.astro";
 
 export interface Props {
-  title: string;
-  date: Date;
-  readingMinutes: string
+   title: string;
+   date: Date;
+   readingMinutes: string;
 }
 
 const { title, date, readingMinutes } = Astro.props;
 const formattedDate = new Date(date).toLocaleDateString("en-us", {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
+   year: "numeric",
+   month: "short",
+   day: "numeric",
 });
 ---
 
 <!DOCTYPE html>
 <html class="theme-sleek" lang="en">
-  <head>
-    <!-- Global Metadata -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="Blogster" />
-    <Favicon />
-    <slot name="meta" />
-    <GoogleFont />
-    <ThemeScript />
-    <FontAwesome />
-  </head>
+   <head>
+      <!-- Global Metadata -->
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <meta name="generator" content="Blogster" />
+      <Favicon />
+      <slot name="meta" />
+      <GoogleFont />
+      <ThemeScript />
+      <FontAwesome />
+   </head>
 
-  <body
-    class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8"
-  >
-    <Header />
-    <main id="main">
-      <div class="bg-[#3073F1] dark:bg-[#4FD2F9] progress-scroll "></div>
-      <section class="blog-post prose max-w-none prose-sleek">
-        <h1 class="m-0 mb-[0.25em]">{title}</h1>
-        <div class="flex items-center font-semibold gap-2 mb-4"><time class="block text-text-muted">{formattedDate}</time>-<cite class="text-xs m-0">{readingMinutes} minutes of reading.</cite></div>
-        <slot name="content" />
-      </section>
-    </main>
+   <body class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8">
+      <Header />
+      <main id="main">
+         <div class="bg-[#3073F1] dark:bg-[#4FD2F9] progress-scroll"></div>
+         <section class="blog-post prose max-w-none prose-sleek">
+            <h1 class="m-0 mb-[0.25em]">{title}</h1>
+            <div class="flex items-center font-semibold gap-2 mb-4">
+               <time class="block text-text-muted">{formattedDate}</time>-<cite
+                  class="text-xs m-0">{readingMinutes} minutes of reading.</cite
+               >
+            </div>
+            <slot name="content" />
+         </section>
+      </main>
 
-    <ScrollToTop />
+      <ScrollToTop />
 
-    <Footer />
-    <style>
-      :root::-webkit-scrollbar{
-        display: none;
-      }
+      <Footer />
+      <style>
+         :root::-webkit-scrollbar {
+            display: none;
+         }
 
-      body {
-        display: grid;
-        grid-template-areas:
-          "header"
-          "main"
-          "footer";
-        grid-template-rows: 5rem minmax(0, 1fr) 5rem;
-        grid-template-columns: minmax(0, 1fr);
-        scroll-behavior: smooth;
-      }
-      main {
-        grid-area: main;
-      }
-      .progress-scroll{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 10px;
-        transform-origin: 0 50%;
-        animation: scaleProgress auto linear;
-        animation-timeline: scroll(root);
-      }
+         body {
+            display: grid;
+            grid-template-areas:
+               "header"
+               "main"
+               "footer";
+            grid-template-rows: 5rem minmax(0, 1fr) 5rem;
+            grid-template-columns: minmax(0, 1fr);
+            scroll-behavior: smooth;
+         }
+         main {
+            grid-area: main;
+         }
+         .progress-scroll {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            transform-origin: 0 50%;
+            animation: scaleProgress auto linear;
+            animation-timeline: scroll(root);
+         }
 
+         /* Estilos para navegadores webkit */
+         article::-webkit-scrollbar {
+            width: 10px; /* Ancho de la barra de desplazamiento */
+         }
 
-      @keyframes scaleProgress {
-        0% {
-          transform: scaleX(0);
-        }
-        100% {
-          transform: scaleX(1);
-        }
-      }
+         article::-webkit-scrollbar-thumb {
+            background-color: #fe0000; /* Color del 'thumb' (el control de desplazamiento) */
+         }
 
-    </style>
-  </body>
+         article::-webkit-scrollbar-thumb:hover {
+            background-color: #555; /* Color del 'thumb' al pasar el ratón por encima */
+         }
+
+         /* Estilos para navegadores Firefox */
+         article {
+            scrollbar-width: thin; /* Ancho de la barra de desplazamiento */
+         }
+         article::-webkit-scrollbar-thumb {
+            background-color: #00ffbf7c; /* Color del 'thumb' (el control de desplazamiento) */
+         }
+
+         article::-webkit-scrollbar-thumb:hover {
+            background-color: #555; /* Color del 'thumb' al pasar el ratón por encima */
+         }
+         @keyframes scaleProgress {
+            0% {
+               transform: scaleX(0);
+            }
+            100% {
+               transform: scaleX(1);
+            }
+         }
+      </style>
+   </body>
 </html>
-

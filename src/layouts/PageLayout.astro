@@ -12,39 +12,38 @@ import ScrollToTop from "src/components/ScrollToTop.astro";
 
 <!DOCTYPE html>
 <html class="theme-sleek" lang="en">
-  <head>
-    <!-- Global Metadata -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="generator" content="Blogster" />
-    <Favicon />
-    <slot name="meta" />
-    <GoogleFont />
-    <ThemeScript />
-    <FontAwesome />
-  </head>
+   <head>
+      <!-- Global Metadata -->
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <meta name="generator" content="Blogster" />
+      <Favicon />
+      <slot name="meta" />
+      <GoogleFont />
+      <ThemeScript />
+      <FontAwesome />
+   </head>
 
-  <body
-    class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8"
-  >
-    <Header />
-    <main id="main">
-      <slot name="main" />      
-    </main>
-    <Footer />
-    <style>
-      body {
-        display: grid;
-        grid-template-areas:
-          "header"
-          "main"
-          "footer";
-        grid-template-rows: 5rem minmax(0, 1fr) 5rem;
-        grid-template-columns: minmax(0, 1fr);
-      }
-      main {
-        grid-area: main;
-      }
-    </style>
-  </body>
+   <body class="min-h-screen max-w-3xl mx-auto px-6 sm:px-8">
+      <Header />
+      <main id="main">
+         <slot name="main" />
+      </main>
+      <Footer />
+      <style>
+         body {
+            display: grid;
+            grid-template-areas:
+               "header"
+               "main"
+               "footer";
+            grid-template-rows: 5rem minmax(0, 1fr) 5rem;
+            grid-template-columns: minmax(0, 1fr);
+         }
+         main {
+            grid-area: main;
+         }
+         
+      </style>
+   </body>
 </html>
