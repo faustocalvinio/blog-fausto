@@ -1,56 +1,75 @@
 ---
-
 ---
 
 <section class="mb-8">
-  <div class="mb-4">
-    <h1
-      class="font-extrabold text-5xl md:text-6xl tracking-tight pt-4 pb-2 overflow-hidden max-sm:text-center"
-    >
-      <span
-        class="bg-gradient-to-r from-blue-500 to-blue-600  dark:from-[#67e8f9] dark:to-[#67e8f9] bg-clip-text text-transparent "
+   <div class="mb-4">
+      <h1
+         class="font-extrabold text-5xl md:text-6xl tracking-tight pt-4 pb-2 overflow-hidden max-sm:text-center"
       >
-        Fausto Calviño
-      </span>
-    </h1>
-    <div class="flex items-center justify-between max-sm:justify-center max-sm:flex-col max-sm:gap-2 ">
-      <p class="text-2xl py-2 max-sm:text-center flex flex-row justify-between">Frontend Web Developer. </p>
-      <code id="hora-code" style="font-size:16px" class="mb-0 px-2 text-sm" id="my-time">📍 Madrid, Spain 		 ⌚<span id="hora-span">00:00</span></code>
-    </div>
-  </div>
-  <div>
-    <p class="mb-5 max-sm:text-center">
-      In this blog, I will be sharing things related to web development as I learn them, with the goal of solidifying my knowledge. In the future, I may also give my personal opinion on certain technologies or methodologies.
-    </p>
-    <p class="mb-5 max-sm:text-center">
-      This is blog is built with
-      <a href={"https://github.com/flexdinesh/blogster"} target="_blank">Blogster</a>. 
-      I've also made some configurations on my own, such as a "minutes of reading" feature, reading progress bar, back to top button and finally changed the colour styles.   
-    </p>
-    <p class="mb-5 max-sm:text-center">
-      If you want to know more about me you can check my <a href={"https://faustocalvinio.netlify.app/"} target="_blank">portfolio</a> or my <a href={"https://www.linkedin.com/in/faustocalvinio"} target="_blank">LinkedIn</a>.  
-    </p>
-    <p class="text-center whitespace-nowrap overflow-auto">
-      
-    </p>
-    <h4>To-Do List:</h4>
-    <ul>    
-      <li>Change: Font family?</li>
-      <li>Feat: Search Feature</li>
-    </ul>
-  </div>
+         <span
+            class="bg-gradient-to-r from-blue-500 to-blue-600 dark:from-[#67e8f9] dark:to-[#67e8f9] bg-clip-text text-transparent"
+         >
+            Fausto Calviño
+         </span>
+      </h1>
+      <div
+         class="flex items-center justify-between max-sm:justify-center max-sm:flex-col max-sm:gap-2"
+      >
+         <p
+            class="text-2xl py-2 max-sm:text-center flex flex-row justify-between"
+         >
+            Frontend Web Developer.
+         </p>
+         <code
+            id="hora-code"
+            style="font-size:16px"
+            class="mb-0 px-2 text-sm"
+            id="my-time"
+            >📍 Madrid, Spain ⌚<span id="hora-span">00:00</span></code
+         >
+      </div>
+   </div>
+   <div>
+      <p class="mb-5 max-sm:text-center">
+         In this blog, I will be sharing things related to web development as I
+         learn them, with the goal of solidifying my knowledge. In the future, I
+         may also give my personal opinion on certain technologies or
+         methodologies.
+      </p>
+      <p class="mb-5 max-sm:text-center">
+         This is blog is built with
+         <a href={"https://github.com/flexdinesh/blogster"} target="_blank"
+            >Blogster</a
+         >. I've also made some configurations on my own, such as a "minutes of
+         reading" feature, reading progress bar, back to top button and finally
+         changed the colour styles.
+      </p>
+      <p class="mb-5 max-sm:text-center">
+         If you want to know more about me you can check my <a
+            href={"https://faustocalvinio.netlify.app/"}
+            target="_blank">portfolio</a
+         > or my <a
+            href={"https://www.linkedin.com/in/faustocalvinio"}
+            target="_blank">LinkedIn</a
+         >.
+      </p>
+      <p class="text-center whitespace-nowrap overflow-auto"></p>
+      <h4>To-Do List:</h4>
+      <ul>
+         <li>Feat: Search Feature</li>
+      </ul>
+   </div>
 </section>
 
-<script >
-  var fechaHora = new Date();
-  fechaHora.toLocaleTimeString('es-ES', { timeZone: 'Europe/Madrid' });
-  var horas = ('0' + fechaHora.getHours()).slice(-2);
-  var minutos = ('0' + fechaHora.getMinutes()).slice(-2); 
-  var horaMadrid = horas + ':' + minutos;
-  const horaElement=document.getElementById('hora-span');
-  
-  window.addEventListener('load',()=>{
-    horaElement!.innerHTML=horaMadrid
-  });
+<script>
+   var fechaHora = new Date();
+   fechaHora.toLocaleTimeString("es-ES", { timeZone: "Europe/Madrid" });
+   var horas = ("0" + fechaHora.getHours()).slice(-2);
+   var minutos = ("0" + fechaHora.getMinutes()).slice(-2);
+   var horaMadrid = horas + ":" + minutos;
+   const horaElement = document.getElementById("hora-span");
 
+   window.addEventListener("load", () => {
+      horaElement!.innerHTML = horaMadrid;
+   });
 </script>
