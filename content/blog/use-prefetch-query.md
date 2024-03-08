@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: TC-usePrefetchQuery (React Query) Example
+title: usePrefetchQuery (React Query) Example
 description: usePrefetchQuery (React Query) Example
 date: 2024-03-02
 readingMinutes: "10"
@@ -9,10 +9,25 @@ readingMinutes: "10"
 
 # Creando el cliente de React Query
 
+[Documentacion oficial](https://tanstack.com/query/latest/docs/reference/QueryClient)
+
 Importante siempre utilizar el mismo.
 
-```ts
+```tsx
+import { QueryClient, QueryClientProvider } from "react-query";
 export const queryClient = new QueryClient();
+/* const queryClient = new QueryClient({
+   defaultOptions: {
+     queries: {
+       staleTime: Infinity,
+     },
+},*/
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+   <QueryClientProvider client={queryClient}>
+      <App />
+   </QueryClientProvider>
+);
 ```
 
 ## Funcion para obtener un producto segun su ID
@@ -35,7 +50,9 @@ const getProductById = async (id: number) => {
 
 ## Creando el prefetch
 
-```jsx
+The options for prefetchQuery are exactly the same as those of fetchQuery.
+
+```tsx
 const onMouseEnter = async () => {
    const cachedData = queryClient.getQueryData(["product", id]);
    if (!cachedData) {
