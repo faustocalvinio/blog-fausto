@@ -9,7 +9,7 @@ readingMinutes: "10"
 
 custom React hook (useSocket) for managing a WebSocket connection and a context provider (SocketProvider) that provides the socket connection and online status to its descendants in the component tree.
 
-### ./hooks/useSocket.js file
+### src/hooks/useSocket.js file
 
 ```js
 import { useEffect, useMemo, useState } from "react";
@@ -49,7 +49,7 @@ export const useSocket = (serverPath) => {
 };
 ```
 
-### ./context/SocketProvider.jsx file
+### src/context/SocketProvider.jsx file
 
 ```jsx
 import { createContext } from "react";
