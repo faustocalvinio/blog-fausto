@@ -67,4 +67,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
    </Provider>
 );
 ```
+
 # como usarlo ?
+
+```jsx
+const { status, errorMessage } = useSelector((state) => state.auth);
+```

@@ -25,7 +25,7 @@ const { increment, getPosts, cleanStore, multiply } = useCounterStore();
 
 ### store/counterStore.ts
 
-```jsx
+```tsx
 import create from "zustand";
 
 export interface Post {
@@ -44,26 +44,23 @@ interface CounterState {
    getPosts: () => Promise<void>;
 }
 
-export const useCounterStore =
-   create <
-   CounterState >
-   ((set, get) => ({
-      title: "Some title",
-      count: 10,
-      posts: [],
-      increment: (value: number) =>
-         set((state) => ({ ...state, count: state.count + value })),
-      getPosts: async () => {
-         const posts = await (
-            await fetch("https://jsonplaceholder.typicode.com/posts")
-         ).json();
-         set((state) => ({ ...state, posts }));
-      },
-      cleanStore: () => set({}, true),
-      multiply: (value: number) => {
-         // const count = get().count
-         const { count } = get();
-         set({ count: count * value });
-      },
-   }));
+export const useCounterStore = create<CounterState>((set, get) => ({
+   title: "Some title",
+   count: 10,
+   posts: [],
+   increment: (value: number) =>
+      set((state) => ({ ...state, count: state.count + value })),
+   getPosts: async () => {
+      const posts = await (
+         await fetch("https://jsonplaceholder.typicode.com/posts")
+      ).json();
+      set((state) => ({ ...state, posts }));
+   },
+   cleanStore: () => set({}, true),
+   multiply: (value: number) => {
+      // const count = get().count
+      const { count } = get();
+      set({ count: count * value });
+   },
+}));
 ```

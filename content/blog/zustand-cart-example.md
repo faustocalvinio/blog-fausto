@@ -1,8 +1,8 @@
 ---
 external: false
 draft: false
-title: TC-Small Cart with Zustand
-description: Small Cart with Zustand
+title: Cart with Zustand
+description: Cart with Zustand
 date: 2024-03-05
 readingMinutes: "4"
 ---
@@ -144,5 +144,9 @@ export const useCartStore = create<State>()(
 #### src/App.tsx
 
 ```tsx
-
+const totalItemsInCart = useCartStore((state) => state.getTotalItems());
+const { itemsInCart, subTotal, tax, totalPrice } = useCartStore((state) =>
+   state.getSummaryInformation()
+);
+const productsInCart = useCartStore((state) => state.cart);
 ```
