@@ -54,6 +54,45 @@ const ogImageAbsoluteUrl =
    />
    <Renderer content={content} slot="content" />
 </ContentLayout>
-<style>
+<script>
+   const preElements = document.querySelectorAll("pre");
+
+   preElements.forEach((preElement) => {
+      const copyButton = document.createElement("button");     
+      copyButton.style.position = "absolute";
+      copyButton.style.top = "5px";
+      copyButton.style.right = "5px";
+      copyButton.style.backgroundColor = "transparent";     
+      copyButton.style.color = "#4FD2F9";
+      copyButton.style.padding = "5px";
+      copyButton.style.cursor = "pointer";
+      copyButton.style.display = "flex";
+    
+      copyButton.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"/><path d="M4.012 16.737A2.005 2.005 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"/></g></svg>
+    `;
   
-</style>
+      preElement.appendChild(copyButton);
+     
+      copyButton.addEventListener("click", () => {
+         if (preElement.textContent === null) return;
+         const textToCopy = preElement.textContent.trim();
+
+         const tempTextArea = document.createElement("textarea");
+         tempTextArea.value = textToCopy;
+
+         document.body.appendChild(tempTextArea);
+
+         tempTextArea.select();
+         navigator.clipboard.writeText(textToCopy);
+
+         document.body.removeChild(tempTextArea);
+         copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"/><path d="M4.012 16.737A2 2 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1M11 14l2 2l4-4"/></g></svg>`;
+         setTimeout(() => {
+            copyButton.innerHTML = `
+               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.667 2.667 0 0 1 18.333 21H9.667A2.667 2.667 0 0 1 7 18.333z"/><path d="M4.012 16.737A2.005 2.005 0 0 1 3 15V5c0-1.1.9-2 2-2h10c.75 0 1.158.385 1.5 1"/></g></svg>
+            `;
+         }, 3000);
+      });
+   });
+</script>
