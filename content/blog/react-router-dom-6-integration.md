@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: TC-React Router Dom simple usage
+title: React Router Dom simple usage
 description: React Router Dom simple usage
 date: 2024-03-11
 readingMinutes: "10"
@@ -13,15 +13,9 @@ Routes will match a set of child routes from the current location.
 
 [Official Examples](https://github.com/remix-run/react-router/tree/dev/examples)
 
-```jsx
-<BrowserRouter>
-   <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="cart" element={<CartPage />} />
-      <Route path="/product/:id" element={<ProductPage />} />
-   </Routes>
-</BrowserRouter>
-```
+### src/router/AppRouter.jsx
+
+Manejando rutas con autenticacion
 
 ```jsx
 export const AppRouter = () => {
@@ -34,11 +28,27 @@ export const AppRouter = () => {
       <BrowserRouter>
          <Routes>
             {status === "authenticated" ? (
-               <Route path="/*" element={<DashboardRouter />} />
+               <Route path="/*" element={<ShopRouter />} />
             ) : (
                <Route path="/auth/*" element={<AuthRouter />} />
             )}
             <Route path="/*" element={<Navigate to="/auth/login" />} />
+         </Routes>
+      </BrowserRouter>
+   );
+};
+```
+
+Manejando rutas en general
+
+```jsx
+export const AppRouter = () => {
+   return (
+      <BrowserRouter>
+         <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="cart" element={<CartPage />} />
+            <Route path="/product/:id" element={<ProductPage />} />
          </Routes>
       </BrowserRouter>
    );

@@ -1,13 +1,17 @@
 ---
 external: false
 draft: false
-title: TC-React Redux example
+title: React Redux example
 description: React Redux example
 date: 2024-03-12
 readingMinutes: "10"
 ---
 
+# Creando el store de Redux
+
 #### src/store/store.js
+
+This creates a Redux store, and also automatically configure the Redux DevTools extension so that you can inspect the store while developing.
 
 ```jsx
 import { configureStore } from "@reduxjs/toolkit";
@@ -58,6 +62,8 @@ export const authSlice = createSlice({
 
 #### src/main.jsx
 
+Once the store is created, we can make it available to our React components by putting a React Redux <Provider>.
+
 ```jsx
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -68,8 +74,33 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-# como usarlo ?
+# Usando el store y sus respectivas funciones
+
+### src/components/authStatus.jsx
 
 ```jsx
 const { status, errorMessage } = useSelector((state) => state.auth);
+return (
+   <div>
+      <p>Status: {status}</p>
+      {errorMessage && <p>Error: {errorMessage}</p>}
+   </div>
+);
+```
+
+### src/components/logoutButton.jsx
+
+```jsx
+import { useDispatch } from "react-redux";
+import { logout } from "./store/auth/authSlice";
+
+const LogoutButton = () => {
+   const dispatch = useDispatch();
+
+   const handleLogout = () => {
+      dispatch(logout({ errorMessage: null }));
+   };
+   return <button onClick={handleLogout}>Logout</button>;
+};
+export default LogoutButton;
 ```
