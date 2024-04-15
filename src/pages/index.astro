@@ -12,3 +12,27 @@ import { SITE_TITLE } from "../config";
     <Intro />
   </Fragment>
 </PageLayout>
+<style is:global>
+  ::-webkit-scrollbar {
+      width: 12px;
+   }
+
+   ::-webkit-scrollbar-track {
+      background-color: #fff;
+   }
+
+   ::-webkit-scrollbar-thumb {
+      background-color: #2c6dee;
+   }
+   html :has(.dark)::-webkit-scrollbar {
+      width: 12px;
+   }
+
+   html :has(.dark)::-webkit-scrollbar-track {
+      background-color: #0e141b;
+   }
+
+   html :has(.dark)::-webkit-scrollbar-thumb {
+      background-color: #2c6cee;
+   }
+</style>
