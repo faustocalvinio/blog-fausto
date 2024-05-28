@@ -37,6 +37,9 @@
          methodologies.
       </p>
       <p class="mb-5 max-sm:text-center">
+         Material tomado de documentacion oficial y de articulos ? recursos? de terceros
+      </p>
+      <p class="mb-5 max-sm:text-center">
          This is blog is built with
          <a href={"https://github.com/flexdinesh/blogster"} target="_blank"
             >Blogster</a
@@ -52,13 +55,7 @@
             href={"https://www.linkedin.com/in/faustocalvinio"}
             target="_blank">LinkedIn</a
          >.
-      </p>
-      <p class="text-center whitespace-nowrap overflow-auto"></p>
-      <h4>To-Do List:</h4>
-      <ul>
-         <li>Feat: Search Feature</li>
-         <li>Fix: hora Spain en vez de local</li>
-      </ul>
+      </p>     
    </div>
 </section>
 
@@ -69,7 +66,8 @@
    var minutos = ("0" + fechaHora.getMinutes()).slice(-2);
    var horaMadrid = horas + ":" + minutos;
    const horaElement = document.getElementById("hora-span");
-
+   // console.log(new Date().toLocaleTimeString("es-ES", { timeZone: "America/Argentina/Buenos_Aires" }))
+   // console.log(horaMadrid);
    window.addEventListener("load", () => {
       horaElement!.innerHTML = horaMadrid;
    });
