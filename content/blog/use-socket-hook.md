@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: useSocket hook + SocketProvider in React
+title: ✅ useSocket hook + SocketProvider in React
 description: useSocket hook + SocketProvider in React
 date: 2024-02-29
 readingMinutes: "10"

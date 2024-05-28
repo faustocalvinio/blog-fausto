@@ -1,6 +1,6 @@
 ---
 external: false
-title: "NextJS Routing"
+title: "✅ NextJS Routing"
 description: "NextJS Routing"
 date: 2023-11-23
 readingMinutes: '5'
@@ -46,4 +46,5 @@ Next.js's routing system offers several advantages:
 
 4. **Easy to Maintain:** The file-system based routing makes it simple to organize and manage routes, as the URL structure mirrors the directory structure of the project.
 
-Overall, Next.js's routing system provides a powerful and efficient approach for managing page navigation in modern web applications. Its combination of file-system based routing, server-side rendering, and SEO optimization ensures fast page load times, good search engine visibility, and easy maintenance.
+This provides a powerful and efficient approach for managing page navigation in modern web applications. 
+Its combination of 1) file-system based routing, 2) server-side rendering, and 3) SEO optimization ensures fast page load times, good search engine visibility, and easy maintenance.

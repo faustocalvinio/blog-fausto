@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: Client vs Server Components 
+title: ❓ Client vs Server Components 
 description: What are they and when to use them.
 date: 2024-05-21
 readingMinutes: '8'

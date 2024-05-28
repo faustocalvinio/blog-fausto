@@ -1,13 +1,15 @@
 ---
 external: false
 draft: false
-title: Cart with Zustand
+title: ✅ Cart with Zustand
 description: Cart with Zustand
 date: 2024-03-05
 readingMinutes: "4"
 ---
 
 # Creando el estado global
+
+Your store is a hook! You can put anything in it: primitives, objects, functions. The set function merges state.
 
 #### src/store/cart-store.ts
 
@@ -140,6 +142,8 @@ export const useCartStore = create<State>()(
 ```
 
 # Utilizando el estado en la aplicacion
+
+You can use the hook anywhere, without the need of providers. Select your state and the consuming component will re-render when that state changes.
 
 #### src/App.tsx
 

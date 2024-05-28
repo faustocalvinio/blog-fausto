@@ -1,12 +1,10 @@
 ---
 external: false
-title: SSR - CSR - SSG differencies
+title: 📷 SSR - CSR - SSG differencies
 description: Lorem Ipsum Description
 date: 2023-11-28
 readingMinutes: '10'
 ---
-
-# SSR, CSR, SSG and ISR: Key Differences
 
 Server-Side Rendering (SSR), Client-Side Rendering (CSR), Static Site Generation (SSG) and Incremental Static Regeneration (ISR) are all techniques used to render web pages. The main difference between these techniques is when and where the page is rendered.
 
@@ -47,4 +45,3 @@ The right choice for your project will depend on your specific needs. If you nee
 | SSG | On the server | On the server | Very fast page load times | Can be difficult to maintain |
 | ISR | On the server and on the client | On the server | Fast initial page load times | Can be more complex than SSG or CSR |
 
-I hope this helps!

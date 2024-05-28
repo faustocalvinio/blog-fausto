@@ -1,10 +1,14 @@
 ---
 external: false
-title: Zustand Basic Usage
+title: ✅ Zustand Basic Usage
 description: Lorem Ipsum Description
 date: 2024-01-03
 readingMinutes: "4"
 ---
+
+Zustand -> a small, fast, and scalable bearbones state management solution.
+
+Copied from [original example](https://docs.pmnd.rs/zustand/getting-started/introduction)
 
 ### App.tsx
 

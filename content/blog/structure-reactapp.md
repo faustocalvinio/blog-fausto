@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: How would I structure a React app?
+title: ❓ How would I structure a React app?
 description: It's a beautiful world out there.
 date: 2023-09-05
 readingMinutes: '8'

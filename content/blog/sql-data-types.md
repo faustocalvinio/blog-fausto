@@ -1,12 +1,10 @@
 ---
 external: false
-title: SQL Data types
+title: ✅ SQL Data types
 description: SQL Data types
 date: 2023-11-24
 readingMinutes: '3'
 ---
-
-# Basics SQL Data types
 
 1.  CHAR - STR, length 0 - 255
 

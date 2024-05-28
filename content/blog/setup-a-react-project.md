@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: React project with Vite
+title: ✅ Set up a React project with Vite
 description: It's a beautiful world out there.
 date: 2023-11-05
 readingMinutes: '10'
