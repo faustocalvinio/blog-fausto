@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: ✅ React Router Dom simple usage
+title: React Router Dom simple usage
 description: React Router Dom simple usage
 date: 2024-03-11
 readingMinutes: "10"

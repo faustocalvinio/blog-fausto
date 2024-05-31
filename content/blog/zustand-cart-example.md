@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: ✅ Cart with Zustand
+title: Cart with Zustand
 description: Cart with Zustand
 date: 2024-03-05
 readingMinutes: "4"

@@ -1,11 +1,12 @@
 ---
 external: false
 draft: false
-title: ✅ Front-end vs Back-end
+title: Front-end vs Back-end
 description: It's a beautiful world out there.
 date: 2023-11-05
-readingMinutes: '3'
+readingMinutes: "3"
 ---
+
 ## Front-end
 
 🌟 Focus : UI.
@@ -30,7 +31,7 @@ readingMinutes: '3'
 
 📦 Works with databases and server technologies.
 
-## Key Differences 
+## Key Differences
 
 #### Responsibilities
 
@@ -51,4 +52,3 @@ Front and back communicate through {% mark %}APIs{% /mark %}.
 #### Objective
 
 Front makes the {% mark %}user interface appealing{% /mark %} and interactive, back manages {% mark %}data and functionality{% /mark %} behind the scenes
-

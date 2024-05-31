@@ -1,7 +1,7 @@
 ---
 external: false
 draft: false
-title: ✅ React Redux example
+title: React Redux example
 description: React Redux example
 date: 2024-03-12
 readingMinutes: "10"
