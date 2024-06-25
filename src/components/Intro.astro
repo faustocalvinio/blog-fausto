@@ -1,7 +1,9 @@
 ---
+import { DateTime } from "luxon" ;
+const horaMadrid = DateTime.now().setZone('Europe/Madrid').toFormat('HH:mm');
 ---
 
-<section class="mb-8">
+<section class="mb-8 text-2xl">
    <div class="mb-4">
       <h1
          class="font-extrabold text-5xl md:text-6xl tracking-tight pt-4 pb-2 overflow-hidden max-sm:text-center"
@@ -25,7 +27,7 @@
             style="font-size:16px"
             class="mb-0 px-2 text-sm"
             id="my-time"
-            >📍 Madrid, Spain ⌚<span id="hora-span">00:00</span></code
+            >📍 Madrid, Spain ⌚<span id="hora-span">{horaMadrid}</span></code
          >
       </div>
    </div>
@@ -37,7 +39,8 @@
          methodologies.
       </p>
       <p class="mb-5 max-sm:text-center">
-         Material tomado de documentacion oficial y de articulos ? recursos? de terceros
+         Material tomado de documentacion oficial y de articulos ? recursos? de
+         terceros
       </p>
       <p class="mb-5 max-sm:text-center">
          This is blog is built with
@@ -55,20 +58,35 @@
             href={"https://www.linkedin.com/in/faustocalvinio"}
             target="_blank">LinkedIn</a
          >.
-      </p>     
+      </p>
    </div>
 </section>
 
 <script>
-   var fechaHora = new Date();
-   fechaHora.toLocaleTimeString("es-ES", { timeZone: "Europe/Madrid" });
-   var horas = ("0" + fechaHora.getHours()).slice(-2);
-   var minutos = ("0" + fechaHora.getMinutes()).slice(-2);
-   var horaMadrid = horas + ":" + minutos;
-   const horaElement = document.getElementById("hora-span");
-   // console.log(new Date().toLocaleTimeString("es-ES", { timeZone: "America/Argentina/Buenos_Aires" }))
-   // console.log(horaMadrid);
-   window.addEventListener("load", () => {
-      horaElement!.innerHTML = horaMadrid;
-   });
+   // var fechaHora = new Date();
+   // fechaHora.toLocaleTimeString("es-ES", { timeZone: "Europe/Madrid" });
+   // var horas = ("0" + fechaHora.getHours()).slice(-2);
+   // var minutos = ("0" + fechaHora.getMinutes()).slice(-2);
+   // var horaMadrid = horas + ":" + minutos;
+   // const horaElement = document.getElementById("hora-span");
+   // // console.log(new Date().toLocaleTimeString("es-ES", { timeZone: "America/Argentina/Buenos_Aires" }))
+   // // console.log(horaMadrid);
+   // window.addEventListener("load", () => {
+   //    horaElement!.innerHTML = horaMadrid;
+   // });
+   import { DateTime } from 'luxon';
+
+function updateMadridTime() {
+  const horaElement = document.getElementById("hora-span");
+  if (horaElement) {
+    const horaMadrid = DateTime.now().setZone('Europe/Madrid').toFormat('HH:mm');
+    horaElement.innerHTML = horaMadrid;
+  }
+}
+
+window.addEventListener("load", () => {
+  updateMadridTime();
+  setInterval(updateMadridTime, 60000); // Actualizar cada minuto
+});
+
 </script>
