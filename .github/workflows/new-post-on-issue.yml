@@ -12,7 +12,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          persist-credentials: false # necesario para usar un token personalizado
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          persist-credentials: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -49,10 +50,10 @@ jobs:
 
       - name: Commit and Push changes
         env:
-          TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
           git add .
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           git commit -m "chore: generated file from issue #${{ github.event.issue.number }}"
-          git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:main
+          git push
           echo "Changes pushed successfully"

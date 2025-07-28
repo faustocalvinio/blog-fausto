@@ -123,13 +123,19 @@ function extractIssueNumber(issueUrl) {
 }
 
 function sanitizeFileName(fileName) {
+   // Remover .md si ya existe al final antes de sanitizar
+   let cleanName = fileName.replace(/\.md$/i, "");
+
    // Remover caracteres especiales y espacios, reemplazar con guiones
-   return fileName
+   cleanName = cleanName
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, "")
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-")
-      .trim("-");
+      .replace(/^-+|-+$/g, ""); // Remover guiones al inicio y final
+
+   // Agregar .md al final
+   return cleanName + ".md";
 }
 
 function determineTargetFolder(labels) {
