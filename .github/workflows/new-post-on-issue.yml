@@ -26,11 +26,12 @@ jobs:
         run: |
           echo "🚀 Generando archivo desde issue #${{ github.event.issue.number }}"
           echo "📝 Título: ${{ github.event.issue.title }}"
+          echo "🏷️ Labels: ${{ toJson(github.event.issue.labels) }}"
           node src/generateBlogFile.js \
             "${{ github.event.issue.html_url }}" \
             "${{ github.event.issue.title }}.md" \
             "${{ github.event.issue.body }}" \
-            "${{ toJson(github.event.issue.labels) }}"
+            '${{ toJson(github.event.issue.labels) }}'
 
       - name: Check if token exists
         run: |

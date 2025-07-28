@@ -14,19 +14,62 @@ function generateBlogPost() {
 
    const [issueUrl, fileName, issueBody, labelsJson] = args;
 
+   console.log("🔍 Argumentos recibidos:");
+   console.log("📍 URL:", issueUrl);
+   console.log("📄 Archivo:", fileName);
+   console.log(
+      "📝 Cuerpo (primeros 100 chars):",
+      issueBody.substring(0, 100) + "..."
+   );
+   console.log("🏷️ Labels JSON recibido:", labelsJson);
+
    try {
-      // Parsear las labels
-      const labels = JSON.parse(labelsJson);
+      // Limpiar y parsear las labels
+      let labels;
+      try {
+         // Intentar parsear directamente
+         labels = JSON.parse(labelsJson);
+      } catch (parseError) {
+         console.error("❌ Error parseando JSON original:", parseError.message);
+         console.log("🔧 Intentando limpiar JSON...");
+
+         // Intentar limpiar el JSON
+         const cleanedJson = labelsJson
+            .replace(/[\u0000-\u001F\u007F-\u009F]/g, "") // Remover caracteres de control
+            .replace(/\\/g, "\\\\") // Escapar backslashes
+            .trim();
+
+         console.log("🧹 JSON limpio:", cleanedJson);
+
+         try {
+            labels = JSON.parse(cleanedJson);
+         } catch (cleanError) {
+            console.error(
+               "❌ Error parseando JSON limpio:",
+               cleanError.message
+            );
+            console.log("🆘 Usando labels por defecto");
+            labels = [{ name: "content" }];
+         }
+      }
+
+      console.log("✅ Labels parseadas:", labels);
 
       // Extraer información del issue
       const issueNumber = extractIssueNumber(issueUrl);
       const cleanFileName = sanitizeFileName(fileName);
+
+      console.log("🔢 Issue número:", issueNumber);
+      console.log("📂 Nombre archivo limpio:", cleanFileName);
 
       // Determinar la carpeta de destino basada en las labels
       const targetFolder = determineTargetFolder(labels);
 
       // Detectar si es un post externo o interno
       const isExternal = detectExternalPost(issueBody, labels);
+
+      console.log("📁 Carpeta destino:", targetFolder);
+      console.log("🔗 Es externo:", isExternal);
 
       // Generar el contenido del archivo markdown según el tipo
       const markdownContent = isExternal
@@ -59,8 +102,17 @@ function generateBlogPost() {
       console.log(`📁 Carpeta: ${targetFolder}`);
       console.log(`📄 Archivo: ${cleanFileName}`);
       console.log(`🔗 Tipo: ${isExternal ? "External" : "Internal"}`);
+      console.log(
+         `📊 Contenido generado (primeros 200 chars):`,
+         markdownContent.substring(0, 200) + "..."
+      );
    } catch (error) {
       console.error("❌ Error al generar el archivo:", error.message);
+      console.error("🔍 Stack trace:", error.stack);
+      console.error("📋 Argumentos que causaron el error:");
+      console.error("   - URL:", issueUrl);
+      console.error("   - Archivo:", fileName);
+      console.error("   - Labels JSON:", labelsJson);
       process.exit(1);
    }
 }
