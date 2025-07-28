@@ -1,0 +1,57 @@
+name: Blog Post Generator
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  generate-file:
+    runs-on: ubuntu-latest
+    if: contains(join(github.event.issue.labels.*.name, ','), 'content')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false # necesario para usar un token personalizado
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate file from issue
+        run: |
+          echo "🚀 Generando archivo desde issue #${{ github.event.issue.number }}"
+          echo "📝 Título: ${{ github.event.issue.title }}"
+          node src/generateBlogFile.js \
+            "${{ github.event.issue.html_url }}" \
+            "${{ github.event.issue.title }}.md" \
+            "${{ github.event.issue.body }}" \
+            "${{ toJson(github.event.issue.labels) }}"
+
+      - name: Check if token exists
+        run: |
+          if [ -z "${{ secrets.PERSONAL_TOKEN }}" ]; then
+            echo "❌ TOKEN is EMPTY or NOT set"
+            exit 1
+          else
+            echo "✅ TOKEN is set"
+          fi
+
+      - name: Set Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push changes
+        env:
+          TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        run: |
+          git add .
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "chore: generated file from issue #${{ github.event.issue.number }}"
+          git push https://x-access-token:${TOKEN}@github.com/${{ github.repository }} HEAD:main
+          echo "Changes pushed successfully"
