@@ -227,6 +227,26 @@ function extractExternalUrl(issueBody) {
    return null;
 }
 
+function cleanIssueBody(body) {
+   // Remover frontmatter del issue si existe
+   // Los frontmatters están entre --- al inicio y ---
+   const frontmatterPattern = /^---\s*\n([\s\S]*?)\n---\s*\n?/;
+   let cleanedBody = body.replace(frontmatterPattern, "");
+
+   // Remover múltiples frontmatters si los hay
+   while (frontmatterPattern.test(cleanedBody)) {
+      cleanedBody = cleanedBody.replace(frontmatterPattern, "");
+   }
+
+   // Remover líneas vacías del inicio
+   cleanedBody = cleanedBody.replace(/^\s*\n+/, "");
+
+   // Remover espacios en blanco excesivos
+   cleanedBody = cleanedBody.replace(/\n\s*\n\s*\n/g, "\n\n");
+
+   return cleanedBody.trim();
+}
+
 function generateExternalMarkdownContent(
    title,
    body,
@@ -238,6 +258,9 @@ function generateExternalMarkdownContent(
 
    // Extraer URL externa del contenido
    const externalUrl = extractExternalUrl(body);
+
+   // Limpiar el contenido del cuerpo del issue (remover frontmatter si existe)
+   const cleanBody = cleanIssueBody(body);
 
    // Generar tags basados en las labels (excluyendo 'content' y 'external')
    const tags = labels
@@ -267,7 +290,7 @@ tags: [${tags.map((tag) => `"${tag}"`).join(", ")}]`
 `;
 
    // Para posts externos, el contenido es más simple
-   const content = body.trim();
+   const content = cleanBody.trim();
 
    // Agregar información del issue al final
    const issueInfo = `
@@ -289,13 +312,16 @@ function generateInternalMarkdownContent(
 ) {
    const currentDate = new Date().toISOString().split("T")[0];
 
+   // Limpiar el contenido del cuerpo del issue (remover frontmatter si existe)
+   const cleanBody = cleanIssueBody(body);
+
    // Generar tags basados en las labels (excluyendo 'content')
    const tags = labels
       .filter((label) => label.name.toLowerCase() !== "content")
       .map((label) => label.name);
 
    // Calcular tiempo de lectura estimado (aproximadamente 200 palabras por minuto)
-   const wordCount = body.split(/\s+/).length;
+   const wordCount = cleanBody.split(/\s+/).length;
    const readingMinutes = Math.max(1, Math.ceil(wordCount / 200));
 
    // Template para posts internos (similar a que-es-una-api.md)
@@ -323,7 +349,7 @@ tags: [${tags.map((tag) => `"${tag}"`).join(", ")}]`
 *Este post fue generado automáticamente desde el [Issue #${issueNumber}](${issueUrl}) de GitHub.*
 `;
 
-   return frontmatter + body + issueInfo;
+   return frontmatter + cleanBody + issueInfo;
 }
 
 // Ejecutar la función principal
