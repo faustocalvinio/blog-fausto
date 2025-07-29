@@ -1,0 +1,104 @@
+name: Modify Post on Issue
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  modify-file:
+    runs-on: ubuntu-latest
+    if: contains(join(github.event.issue.labels.*.name, ','), 'modify-post')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          persist-credentials: true
+
+      - name: Modify file from issue
+        run: |
+          echo "✏️ Modificando archivo desde issue #${{ github.event.issue.number }}"
+          echo "📝 Título: ${{ github.event.issue.title }}"
+          
+          # Limpiar el nombre del archivo (convertir a minúsculas, reemplazar espacios con guiones)
+          CLEAN_TITLE=$(echo "${{ github.event.issue.title }}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9 -]//g' | sed 's/ \+/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$//g')
+          FILE_NAME="${CLEAN_TITLE}.md"
+          
+          echo "📄 Archivo a modificar: ${FILE_NAME}"
+          
+          # Buscar el archivo en content/blog/
+          BLOG_FILE="content/blog/${FILE_NAME}"
+          PROJECT_FILE="content/projects/${FILE_NAME}"
+          TARGET_FILE=""
+          
+          if [ -f "$BLOG_FILE" ]; then
+            TARGET_FILE="$BLOG_FILE"
+            echo "📁 Encontrado en blog: $TARGET_FILE"
+          elif [ -f "$PROJECT_FILE" ]; then
+            TARGET_FILE="$PROJECT_FILE"
+            echo "📁 Encontrado en projects: $TARGET_FILE"
+          else
+            echo "❌ No se encontró el archivo. Buscando archivos similares..."
+            SIMILAR_FILE=$(find content/ -name "*${CLEAN_TITLE}*" -type f | head -1)
+            if [ -n "$SIMILAR_FILE" ]; then
+              TARGET_FILE="$SIMILAR_FILE"
+              echo "📁 Encontrado archivo similar: $TARGET_FILE"
+            else
+              echo "❌ No se encontró ningún archivo para modificar"
+              exit 1
+            fi
+          fi
+          
+          # Extraer el frontmatter existente del archivo
+          if [ -f "$TARGET_FILE" ]; then
+            echo "📖 Extrayendo frontmatter existente..."
+            
+            # Extraer frontmatter (todo entre los primeros --- y ---)
+            FRONTMATTER=$(sed -n '1,/^---$/p' "$TARGET_FILE" | head -n -1)
+            
+            # Limpiar el contenido del issue (remover frontmatter si existe)
+            ISSUE_BODY="${{ github.event.issue.body }}"
+            CLEAN_CONTENT=$(echo "$ISSUE_BODY" | sed '/^---$/,/^---$/d' | sed '/^$/d' | sed '1s/^[[:space:]]*//')
+            
+            # Crear el nuevo contenido del archivo
+            echo "✍️ Creando nuevo contenido..."
+            {
+              echo "$FRONTMATTER"
+              echo "---"
+              echo ""
+              echo "$CLEAN_CONTENT"
+              echo ""
+              echo "---"
+              echo ""
+              echo "*Este post fue modificado automáticamente desde el [Issue #${{ github.event.issue.number }}](${{ github.event.issue.html_url }}) de GitHub.*"
+            } > "$TARGET_FILE"
+            
+            echo "✅ Archivo modificado exitosamente: $TARGET_FILE"
+          else
+            echo "❌ Error: No se pudo acceder al archivo"
+            exit 1
+          fi
+
+      - name: Check if token exists
+        run: |
+          if [ -z "${{ secrets.PERSONAL_TOKEN }}" ]; then
+            echo "❌ TOKEN is EMPTY or NOT set"
+            exit 1
+          else
+            echo "✅ TOKEN is set"
+          fi
+
+      - name: Set Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        run: |
+          git add .
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "chore: modified file from issue #${{ github.event.issue.number }}"
+          git push
+          echo "Changes pushed successfully"
