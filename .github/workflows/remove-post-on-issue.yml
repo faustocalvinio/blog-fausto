@@ -1,0 +1,75 @@
+name: Remove Post on Issue
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  remove-file:
+    runs-on: ubuntu-latest
+    if: contains(join(github.event.issue.labels.*.name, ','), 'delete-content')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          persist-credentials: true
+
+      - name: Remove file from issue
+        run: |
+          echo "🗑️ Eliminando archivo desde issue #${{ github.event.issue.number }}"
+          echo "📝 Título: ${{ github.event.issue.title }}"
+          
+          # Limpiar el nombre del archivo (convertir a minúsculas, reemplazar espacios con guiones)
+          CLEAN_TITLE=$(echo "${{ github.event.issue.title }}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9 -]//g' | sed 's/ \+/-/g' | sed 's/--*/-/g' | sed 's/^-\|-$//g')
+          FILE_NAME="${CLEAN_TITLE}.md"
+          
+          echo "📄 Archivo a eliminar: ${FILE_NAME}"
+          
+          # Buscar y eliminar el archivo en content/blog/
+          BLOG_FILE="content/blog/${FILE_NAME}"
+          if [ -f "$BLOG_FILE" ]; then
+            rm "$BLOG_FILE"
+            echo "Eliminado: $BLOG_FILE"
+          else
+            echo "No se encontró: $BLOG_FILE"
+          fi
+          
+          # Buscar y eliminar el archivo en content/projects/
+          PROJECT_FILE="content/projects/${FILE_NAME}"
+          if [ -f "$PROJECT_FILE" ]; then
+            rm "$PROJECT_FILE"
+            echo "Eliminado: $PROJECT_FILE"
+          else
+            echo "No se encontró: $PROJECT_FILE"
+          fi
+          
+          # Buscar archivos con nombres similares (en caso de que haya variaciones)
+          echo "🔍 Buscando archivos similares..."
+          find content/ -name "*${CLEAN_TITLE}*" -type f -delete -print | while read file; do
+            echo "Eliminado archivo similar: $file"
+          done
+
+      - name: Check if token exists
+        run: |
+          if [ -z "${{ secrets.PERSONAL_TOKEN }}" ]; then
+            echo "TOKEN is EMPTY or NOT set"
+            exit 1
+          else
+            echo "TOKEN is set"
+          fi
+
+      - name: Set Git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        run: |
+          git add .
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "chore: removed file from issue #${{ github.event.issue.number }}"
+          git push
+          echo "Changes pushed successfully"

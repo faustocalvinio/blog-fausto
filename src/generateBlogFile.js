@@ -2,12 +2,11 @@ const fs = require("fs");
 const path = require("path");
 
 function generateBlogPost() {
-   // Obtener argumentos de la línea de comandos
    const args = process.argv.slice(2);
 
    if (args.length < 4) {
       console.error(
-         "❌ Faltan argumentos. Uso: node generateBlogFile.js <issueUrl> <fileName> <issueBody> <labelsJson>"
+         "Faltan argumentos. Uso: node generateBlogFile.js <issueUrl> <fileName> <issueBody> <labelsJson>"
       );
       process.exit(1);
    }
@@ -24,19 +23,19 @@ function generateBlogPost() {
    console.log("🏷️ Labels JSON recibido:", labelsJson);
 
    try {
-      // Limpiar y parsear las labels
+      
       let labels;
       try {
-         // Intentar parsear directamente
+       
          labels = JSON.parse(labelsJson);
       } catch (parseError) {
          console.error("❌ Error parseando JSON original:", parseError.message);
          console.log("🔧 Intentando limpiar JSON...");
 
-         // Intentar limpiar el JSON
+         
          const cleanedJson = labelsJson
-            .replace(/[\u0000-\u001F\u007F-\u009F]/g, "") // Remover caracteres de control
-            .replace(/\\/g, "\\\\") // Escapar backslashes
+            .replace(/[\u0000-\u001F\u007F-\u009F]/g, "")
+            .replace(/\\/g, "\\\\") 
             .trim();
 
          console.log("🧹 JSON limpio:", cleanedJson);
@@ -55,23 +54,20 @@ function generateBlogPost() {
 
       console.log("✅ Labels parseadas:", labels);
 
-      // Extraer información del issue
+
       const issueNumber = extractIssueNumber(issueUrl);
       const cleanFileName = sanitizeFileName(fileName);
 
       console.log("🔢 Issue número:", issueNumber);
       console.log("📂 Nombre archivo limpio:", cleanFileName);
 
-      // Determinar la carpeta de destino basada en las labels
       const targetFolder = determineTargetFolder(labels);
 
-      // Detectar si es un post externo o interno
       const isExternal = detectExternalPost(issueBody, labels);
 
-      console.log("📁 Carpeta destino:", targetFolder);
-      console.log("🔗 Es externo:", isExternal);
+      console.log("Carpeta destino:", targetFolder);
+      console.log("Es externo:", isExternal);
 
-      // Generar el contenido del archivo markdown según el tipo
       const markdownContent = isExternal
          ? generateExternalMarkdownContent(
               cleanFileName.replace(".md", ""),
@@ -88,31 +84,29 @@ function generateBlogPost() {
               labels
            );
 
-      // Crear el directorio si no existe
       const fullPath = path.join(process.cwd(), "content", targetFolder);
       if (!fs.existsSync(fullPath)) {
          fs.mkdirSync(fullPath, { recursive: true });
       }
 
-      // Escribir el archivo
       const filePath = path.join(fullPath, cleanFileName);
       fs.writeFileSync(filePath, markdownContent);
 
-      console.log(`✅ Archivo generado exitosamente: ${filePath}`);
-      console.log(`📁 Carpeta: ${targetFolder}`);
-      console.log(`📄 Archivo: ${cleanFileName}`);
-      console.log(`🔗 Tipo: ${isExternal ? "External" : "Internal"}`);
+      console.log(`Archivo generado exitosamente: ${filePath}`);
+      console.log(`Carpeta: ${targetFolder}`);
+      console.log(`Archivo: ${cleanFileName}`);
+      console.log(`Tipo: ${isExternal ? "External" : "Internal"}`);
       console.log(
-         `📊 Contenido generado (primeros 200 chars):`,
+         `Contenido generado (primeros 200 chars):`,
          markdownContent.substring(0, 200) + "..."
       );
    } catch (error) {
-      console.error("❌ Error al generar el archivo:", error.message);
-      console.error("🔍 Stack trace:", error.stack);
-      console.error("📋 Argumentos que causaron el error:");
-      console.error("   - URL:", issueUrl);
-      console.error("   - Archivo:", fileName);
-      console.error("   - Labels JSON:", labelsJson);
+      console.error("Error al generar el archivo:", error.message);
+      console.error("Stack trace:", error.stack);
+      console.error("Argumentos que causaron el error:");
+      console.error("URL:", issueUrl);
+      console.error("Archivo:", fileName);
+      console.error("Labels JSON:", labelsJson);
       process.exit(1);
    }
 }
@@ -123,42 +117,34 @@ function extractIssueNumber(issueUrl) {
 }
 
 function sanitizeFileName(fileName) {
-   // Remover .md si ya existe al final antes de sanitizar
    let cleanName = fileName.replace(/\.md$/i, "");
 
-   // Remover caracteres especiales y espacios, reemplazar con guiones
    cleanName = cleanName
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, "")
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-")
-      .replace(/^-+|-+$/g, ""); // Remover guiones al inicio y final
+      .replace(/^-+|-+$/g, "");
 
-   // Agregar .md al final
    return cleanName + ".md";
 }
 
 function determineTargetFolder(labels) {
-   // Buscar labels específicas para determinar la carpeta
    const labelNames = labels.map((label) => label.name.toLowerCase());
 
    if (labelNames.includes("project") || labelNames.includes("projects")) {
       return "projects";
    }
 
-   // Por defecto, usar la carpeta blog
    return "blog";
 }
 
 function detectExternalPost(issueBody, labels) {
-   // Detectar si es un post externo basándose en:
-   // 1. Labels que contengan "external"
    const labelNames = labels.map((label) => label.name.toLowerCase());
    if (labelNames.includes("external")) {
       return true;
    }
 
-   // 2. URLs en el contenido del issue
    const urlPattern = /https?:\/\/[^\s]+/g;
    const urls = issueBody.match(urlPattern);
 
@@ -228,20 +214,17 @@ function extractExternalUrl(issueBody) {
 }
 
 function cleanIssueBody(body) {
-   // Remover frontmatter del issue si existe
-   // Los frontmatters están entre --- al inicio y ---
+
    const frontmatterPattern = /^---\s*\n([\s\S]*?)\n---\s*\n?/;
    let cleanedBody = body.replace(frontmatterPattern, "");
 
-   // Remover múltiples frontmatters si los hay
    while (frontmatterPattern.test(cleanedBody)) {
       cleanedBody = cleanedBody.replace(frontmatterPattern, "");
    }
 
-   // Remover líneas vacías del inicio
+
    cleanedBody = cleanedBody.replace(/^\s*\n+/, "");
 
-   // Remover espacios en blanco excesivos
    cleanedBody = cleanedBody.replace(/\n\s*\n\s*\n/g, "\n\n");
 
    return cleanedBody.trim();
@@ -297,7 +280,7 @@ tags: [${tags.map((tag) => `"${tag}"`).join(", ")}]`
 
 ---
 
-*Este post fue generado automáticamente desde el [Issue #${issueNumber}](${issueUrl}) de GitHub.*
+*Este post fue generado automáticamente por GitHub Actions desde el [Issue #${issueNumber}](${issueUrl}) de GitHub.*
 `;
 
    return frontmatter + content + issueInfo;
@@ -346,13 +329,12 @@ tags: [${tags.map((tag) => `"${tag}"`).join(", ")}]`
 
 ---
 
-*Este post fue generado automáticamente desde el [Issue #${issueNumber}](${issueUrl}) de GitHub.*
+*Este post fue generado automáticamente por GitHub Actions desde el [Issue #${issueNumber}](${issueUrl}) de GitHub.*
 `;
 
    return frontmatter + cleanBody + issueInfo;
 }
 
-// Ejecutar la función principal
 if (require.main === module) {
    generateBlogPost();
 }
