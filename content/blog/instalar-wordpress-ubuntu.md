@@ -1,0 +1,83 @@
+---
+external: true
+url: https://wordpress.org/latest.tar.gz
+title: instalar-wordpress-ubuntu
+description: instalar-wordpress-ubuntu
+date: 2025-07-30
+---
+
+# Cómo montar WordPress en Ubuntu
+
+En este tutorial aprenderás a instalar y configurar WordPress en Ubuntu Server paso a paso.
+
+## Instalación de dependencias
+
+Primero actualizamos el sistema e instalamos Apache, MySQL y PHP:
+
+```bash
+sudo apt update 
+sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql -y 
+sudo systemctl start apache2 
+sudo systemctl enable apache2
+```
+
+## Configuración de MySQL
+
+Aseguramos la instalación de MySQL y creamos la base de datos:
+
+```bash
+sudo mysql_secure_installation 
+sudo mysql -u root -p 
+
+CREATE DATABASE wordpress; 
+CREATE USER 'wpuser'@'localhost' IDENTIFIED BY 'password_segura'; 
+GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser'@'localhost'; 
+FLUSH PRIVILEGES; 
+EXIT;
+```
+
+## Descarga e instalación de WordPress
+
+Descargamos WordPress y lo copiamos al directorio web:
+
+```bash
+cd /tmp 
+curl -O https://wordpress.org/latest.tar.gz 
+tar -xzf latest.tar.gz 
+sudo cp -r wordpress/* /var/www/html/ 
+cd /var/www/html 
+sudo chown -R www-data:www-data *
+```
+
+## Configuración de WordPress
+
+Configuramos la conexión a la base de datos:
+
+```bash
+cp wp-config-sample.php wp-config.php
+```
+
+Edita wp-config.php y añade la configuración de la base de datos:
+
+```php
+define('DB_NAME', 'wordpress'); 
+define('DB_USER', 'wpuser'); 
+define('DB_PASSWORD', 'password_segura'); 
+define('DB_HOST', 'localhost');
+```
+
+## Finalización
+
+Limpiamos archivos temporales y reiniciamos Apache:
+
+```bash
+rm -rf /tmp/wordpress
+rm /tmp/latest.tar.gz
+sudo systemctl restart apache2
+```
+
+Ahora puedes acceder a tu instalación de WordPress navegando a `http://tu-ip-servidor` y completar la configuración a través del navegador.
+
+---
+
+*Este post fue generado automáticamente por GitHub Actions desde el [Issue #11](https://github.com/faustocalvinio/blog-fausto/issues/11) de GitHub.*
