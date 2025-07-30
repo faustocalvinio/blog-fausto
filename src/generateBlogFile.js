@@ -23,19 +23,16 @@ function generateBlogPost() {
    console.log("🏷️ Labels JSON recibido:", labelsJson);
 
    try {
-      
       let labels;
       try {
-       
          labels = JSON.parse(labelsJson);
       } catch (parseError) {
          console.error("❌ Error parseando JSON original:", parseError.message);
          console.log("🔧 Intentando limpiar JSON...");
 
-         
          const cleanedJson = labelsJson
             .replace(/[\u0000-\u001F\u007F-\u009F]/g, "")
-            .replace(/\\/g, "\\\\") 
+            .replace(/\\/g, "\\\\")
             .trim();
 
          console.log("🧹 JSON limpio:", cleanedJson);
@@ -53,7 +50,6 @@ function generateBlogPost() {
       }
 
       console.log("✅ Labels parseadas:", labels);
-
 
       const issueNumber = extractIssueNumber(issueUrl);
       const cleanFileName = sanitizeFileName(fileName);
@@ -214,17 +210,22 @@ function extractExternalUrl(issueBody) {
 }
 
 function cleanIssueBody(body) {
-
+   // Remover frontmatter si existe
    const frontmatterPattern = /^---\s*\n([\s\S]*?)\n---\s*\n?/;
    let cleanedBody = body.replace(frontmatterPattern, "");
 
+   // Remover múltiples frontmatters si existen
    while (frontmatterPattern.test(cleanedBody)) {
       cleanedBody = cleanedBody.replace(frontmatterPattern, "");
    }
 
+   // NO escapar nada aquí, mantener el contenido tal como está para markdown
+   // El contenido ya viene escapado desde el workflow
 
+   // Limpiar espacios al inicio
    cleanedBody = cleanedBody.replace(/^\s*\n+/, "");
 
+   // Normalizar múltiples saltos de línea
    cleanedBody = cleanedBody.replace(/\n\s*\n\s*\n/g, "\n\n");
 
    return cleanedBody.trim();

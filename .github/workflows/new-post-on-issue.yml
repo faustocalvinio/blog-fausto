@@ -28,11 +28,21 @@ jobs:
           echo "🚀 Generando archivo desde issue #${{ github.event.issue.number }}"
           echo "📝 Título: ${{ github.event.issue.title }}"
           echo "🏷️ Labels: ${{ toJson(github.event.issue.labels) }}"
+          
+          # Guardar el contenido del issue en un archivo temporal para evitar problemas de interpretación
+          cat > issue_body.txt << 'EOF'
+          ${{ github.event.issue.body }}
+          EOF
+          
+          # Ejecutar el script pasando el archivo temporal
           node src/generateBlogFile.js \
             "${{ github.event.issue.html_url }}" \
             "${{ github.event.issue.title }}.md" \
-            "${{ github.event.issue.body }}" \
+            "$(cat issue_body.txt)" \
             '${{ toJson(github.event.issue.labels) }}'
+          
+          # Limpiar archivo temporal
+          rm -f issue_body.txt
 
       - name: Check if token exists
         run: |
