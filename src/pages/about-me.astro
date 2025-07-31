@@ -1,0 +1,38 @@
+---
+import PageMeta from "../components/PageMeta.astro";
+import PageLayout from "../layouts/PageLayout.astro";
+import Intro from "../components/Intro.astro";
+import AboutTheTheme from "../components/AboutTheTheme.astro";
+import { SITE_TITLE } from "../config";
+---
+
+<PageLayout>
+  <PageMeta title={SITE_TITLE} slot="meta" />
+  <Fragment slot="main">
+    <Intro />
+  </Fragment>
+</PageLayout>
+<style is:global>
+  ::-webkit-scrollbar {
+      width: 12px;
+   }
+
+   ::-webkit-scrollbar-track {
+      background-color: #fff;
+   }
+
+   ::-webkit-scrollbar-thumb {
+      background-color: #2c6dee;
+   }
+   html :has(.dark)::-webkit-scrollbar {
+      width: 12px;
+   }
+
+   html :has(.dark)::-webkit-scrollbar-track {
+      background-color: #0e141b;
+   }
+
+   html :has(.dark)::-webkit-scrollbar-thumb {
+      background-color: #2c6cee;
+   }
+</style>

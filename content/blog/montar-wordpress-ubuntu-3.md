@@ -1,5 +1,5 @@
 ---
-external: true
+external: false
 url: https://wordpress.org/latest.tar.gz
 title: Montar Wordpress Ubuntu 3
 description: Montar Wordpress Ubuntu 3
@@ -77,8 +77,6 @@ sudo systemctl restart apache2
 ```
 
 Ahora puedes acceder a tu instalación de WordPress navegando a `http://tu-ip-servidor` y completar la configuración a través del navegador.
-
----
 
 ---
 
