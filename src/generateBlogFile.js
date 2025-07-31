@@ -53,9 +53,11 @@ function generateBlogPost() {
 
       const issueNumber = extractIssueNumber(issueUrl);
       const cleanFileName = sanitizeFileName(fileName);
+      const formattedTitle = formatTitle(fileName);
 
       console.log("🔢 Issue número:", issueNumber);
       console.log("📂 Nombre archivo limpio:", cleanFileName);
+      console.log("📝 Título formateado:", formattedTitle);
 
       const targetFolder = determineTargetFolder(labels);
 
@@ -66,14 +68,14 @@ function generateBlogPost() {
 
       const markdownContent = isExternal
          ? generateExternalMarkdownContent(
-              cleanFileName.replace(".md", ""),
+              formattedTitle,
               issueBody,
               issueUrl,
               issueNumber,
               labels
            )
          : generateInternalMarkdownContent(
-              cleanFileName.replace(".md", ""),
+              formattedTitle,
               issueBody,
               issueUrl,
               issueNumber,
@@ -123,6 +125,24 @@ function sanitizeFileName(fileName) {
       .replace(/^-+|-+$/g, "");
 
    return cleanName + ".md";
+}
+
+function formatTitle(originalTitle) {
+   // Remove .md extension if present
+   let title = originalTitle.replace(/\.md$/i, "");
+   
+   // Replace underscores and multiple dashes with spaces
+   title = title.replace(/[_-]+/g, " ");
+   
+   // Capitalize each word (title case)
+   title = title.replace(/\b\w+/g, (word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+   });
+   
+   // Clean up extra spaces
+   title = title.replace(/\s+/g, " ").trim();
+   
+   return title;
 }
 
 function determineTargetFolder(labels) {
