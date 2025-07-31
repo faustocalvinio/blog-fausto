@@ -56,9 +56,13 @@ jobs:
             # Extraer frontmatter (todo entre los primeros --- y ---)
             FRONTMATTER=$(sed -n '1,/^---$/p' "$TARGET_FILE" | head -n -1)
             
+            # Guardar el contenido del issue en un archivo temporal para evitar interpretación de comandos
+            cat > issue_content.txt << 'EOF'
+          ${{ github.event.issue.body }}
+          EOF
+            
             # Limpiar el contenido del issue (remover frontmatter si existe)
-            ISSUE_BODY="${{ github.event.issue.body }}"
-            CLEAN_CONTENT=$(echo "$ISSUE_BODY" | sed '/^---$/,/^---$/d' | sed '/^$/d' | sed '1s/^[[:space:]]*//')
+            CLEAN_CONTENT=$(cat issue_content.txt | sed '/^---$/,/^---$/d' | sed '/^$/d' | sed '1s/^[[:space:]]*//')
             
             # Crear el nuevo contenido del archivo
             echo "✍️ Creando nuevo contenido..."
@@ -72,6 +76,9 @@ jobs:
               echo ""
               echo "*Este post fue modificado automáticamente desde el [Issue #${{ github.event.issue.number }}](${{ github.event.issue.html_url }}) de GitHub.*"
             } > "$TARGET_FILE"
+            
+            # Limpiar archivo temporal
+            rm -f issue_content.txt
             
             echo "✅ Archivo modificado exitosamente: $TARGET_FILE"
           else

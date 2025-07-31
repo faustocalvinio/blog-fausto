@@ -131,7 +131,7 @@ function formatTitle(originalTitle) {
    // Remove .md extension if present
    let title = originalTitle.replace(/\.md$/i, "");
    
-   // Replace underscores and multiple dashes with spaces
+   // Replace underscores and dashes with spaces
    title = title.replace(/[_-]+/g, " ");
    
    // Capitalize each word (title case)
@@ -157,50 +157,9 @@ function determineTargetFolder(labels) {
 
 function detectExternalPost(issueBody, labels) {
    const labelNames = labels.map((label) => label.name.toLowerCase());
-   if (labelNames.includes("external")) {
-      return true;
-   }
-
-   const urlPattern = /https?:\/\/[^\s]+/g;
-   const urls = issueBody.match(urlPattern);
-
-   // Si hay URLs externas (no del repositorio) y el contenido es corto, probablemente es externo
-   if (urls && urls.length > 0) {
-      const externalUrls = urls.filter(
-         (url) =>
-            !url.includes("github.com") ||
-            !url.includes("localhost") ||
-            url.includes("freecodecamp.org") ||
-            url.includes("medium.com") ||
-            url.includes("dev.to") ||
-            url.includes("blog.")
-      );
-
-      // Si el contenido es relativamente corto y tiene URLs externas, es probablemente externo
-      const wordCount = issueBody.split(/\s+/).length;
-      if (externalUrls.length > 0 && wordCount < 500) {
-         return true;
-      }
-   }
-
-   // 3. Palabras clave que indican contenido externo
-   const externalKeywords = [
-      "article by",
-      "tutorial by",
-      "post by",
-      "guide by",
-      "by freecodecamp",
-      "external link",
-      "original article",
-      "source:",
-   ];
-
-   const bodyLower = issueBody.toLowerCase();
-   if (externalKeywords.some((keyword) => bodyLower.includes(keyword))) {
-      return true;
-   }
-
-   return false;
+   
+   // Solo es externo si tiene la etiqueta "external"
+   return labelNames.includes("external");
 }
 
 function extractExternalUrl(issueBody) {
@@ -273,7 +232,7 @@ function generateExternalMarkdownContent(
       )
       .map((label) => label.name);
 
-   // Template para posts externos (similar a react-suspense-by-freecodecamp.md)
+   // Template para posts externos
    const frontmatter = `---
 external: true${
       externalUrl
@@ -281,8 +240,8 @@ external: true${
 url: ${externalUrl}`
          : ""
    }
-title: ${title}
-description: ${title}
+title: "${title}"
+description: "${title}"
 date: ${currentDate}${
       tags.length > 0
          ? `
@@ -328,12 +287,12 @@ function generateInternalMarkdownContent(
    const wordCount = cleanBody.split(/\s+/).length;
    const readingMinutes = Math.max(1, Math.ceil(wordCount / 200));
 
-   // Template para posts internos (similar a que-es-una-api.md)
+   // Template para posts internos
    const frontmatter = `---
 external: false
 draft: false
-title: ${title}
-description: ${title}
+title: "${title}"
+description: "${title}"
 date: ${currentDate}
 readingMinutes: "${readingMinutes}"${
       tags.length > 0
